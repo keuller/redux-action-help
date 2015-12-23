@@ -53,3 +53,5 @@ let createStoreWithMiddleware = applyMiddleware(asyncActionMiddleware)(createSto
 
 export default createStoreWithMiddleware(appReducers);
 ```
+
+Any suggestion ? Feel free to contribute and help us to create a set of helpers.
