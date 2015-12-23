@@ -1,7 +1,7 @@
 Redux Action Helpers
 ======================
 
-1. Action Creator Helper
+2. Action Creator Helper
 
 This helper create Actions based on ```key``` and standardizes Action's structure. For example:
 
