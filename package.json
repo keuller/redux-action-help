@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/keuller/redux-action-help.git"
   },
-  "keywords": [],
+  "keywords": ["redux", "action", "helper"],
   "author": "Keuller Magalhaes <keuller.magalhaes at gmail.com>",
   "license": "GNU",
   "bugs": {
