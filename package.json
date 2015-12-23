@@ -1,0 +1,28 @@
+{
+  "name": "redux-action-helper",
+  "version": "1.0.0",
+  "description": "Redux Action Helpers",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js --progress --color"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keuller/redux-action-help.git"
+  },
+  "keywords": [],
+  "author": "Keuller Magalhaes <keuller.magalhaes at gmail.com>",
+  "license": "GNU",
+  "bugs": {
+    "url": "https://github.com/keuller/redux-action-help/issues"
+  },
+  "homepage": "https://github.com/keuller/redux-action-help#readme",
+  "devDependencies": {
+    "babel": "^6.3.26",
+    "babel-core": "^6.3.26",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "webpack": "^1.12.9"
+  }
+}
