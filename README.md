@@ -38,4 +38,17 @@ let myReducer = (state = {}, action) => {
 }
 ```
 
-2. Async Actin Middleware
+2. Async Action Middleware
+
+This helper is the same as thunk middleware. But we decide to put together, because we believe this middleware is related to action helpers. If you prefer to use thunk middleware has the same effect.
+
+The usage:
+```
+import { asyncActionMiddleware } from 'redux-action-helper';
+
+...your code...
+
+let createStoreWithMiddleware = applyMiddleware(asyncActionMiddleware)(createStore);
+
+export default createStoreWithMiddleware(appReducers);
+```
