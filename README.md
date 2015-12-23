@@ -40,7 +40,7 @@ let myReducer = (state = {}, action) => {
 
 2. Async Action Middleware
 
-This helper is the same as thunk middleware. But we decide to put together, because we believe this middleware is related to action helpers. If you prefer to use thunk middleware has the same effect.
+This helper is the same as thunk middleware. But we decide to put it all together, because we believe this middleware is related to action helpers. If you prefer to use thunk middleware has the same effect.
 
 The usage:
 ```
