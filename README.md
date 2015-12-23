@@ -44,6 +44,7 @@ This helper is the same as thunk middleware. But we decide to put together, beca
 
 The usage:
 ```
+import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { asyncActionMiddleware } from 'redux-action-helper';
 
 ...your code...
