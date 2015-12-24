@@ -1,8 +1,8 @@
 {
   "name": "redux-action-helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Redux Action Helpers",
-  "main": "webpack.config.js",
+  "main": "src/redux-action-helper.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js --progress --color"
@@ -23,6 +23,6 @@
     "babel-core": "^6.3.26",
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.3.13",
-    "webpack": "^1.12.9"
+    "webpack": "^1.12.2"
   }
 }
