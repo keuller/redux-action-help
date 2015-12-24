@@ -3,14 +3,15 @@ var webpack = require('webpack'),
 
     module.exports = {
         entry: {
-            'redux-action-helper': path.resolve(__dirname, 'src/redux-action-helper')
+            'redux-action-helper': path.resolve(__dirname, 'src/redux-action-helper'),
+            'redux-action-helper.min': path.resolve(__dirname, 'src/redux-action-helper')
         },
         resolve: {
             extensions: ['', '.js']
         },
         output: {
             path: path.resolve(__dirname, 'dist'),
-            filename: '[name].min.js'
+            filename: '[name].js'
         },
         module: {
             loaders: [
@@ -27,7 +28,8 @@ var webpack = require('webpack'),
                 'process.env.NODE_ENV': 'production'
             }),
             new webpack.optimize.UglifyJsPlugin({
-                compressor: { warnings: false }
+                compressor: { warnings: false },
+                include: /(redux-action-helper.min)/
             })
         ],
         debug: false
