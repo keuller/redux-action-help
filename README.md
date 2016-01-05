@@ -1,7 +1,7 @@
 Redux Action Helpers
 ======================
 
-1. Action Creator Helper
+1.  Action Creator Helper
 
 This helper create Actions based on ```key``` and standardizes Action's structure. For example:
 
@@ -15,7 +15,7 @@ let myAction = (data) => {
 }
 ```
 
-You just need call ```createAction``` like this:
+You just need call ```createSimpleAction``` like this:
 
 ```
 import { createAction } from 'redux-action-helper';
@@ -42,7 +42,7 @@ There are two types of actions: ```Default``` and ```Simple``` action. The main 
 
 You can create a simple action using ```createSimpleAction``` instead of ```createAction```.
 
-2. Async Action Creator Helper
+2.  Async Action Creator Helper
 
 Similarly to ```createAction``` and ```createSimpleAction``` helpers, there is a helper for asynchronous action. You can use an async action to call a Rest API, for example. So to create an async action, you can do that like:
 
@@ -75,7 +75,17 @@ let saveTodo = createAsyncAction((dispatch, todo) => {
 
 In that example, we're passing a ```todo``` parameter with contains the data to be posted into request.
 
-3. Async Action Middleware
+Inside your React component, you can use the action like:
+
+```
+onSaveClick = (e) => {
+    e.preventDefault();
+    let { store } = this.context;
+    store.dispatch(saveTodo({ text:'Learn Redux', completed: false }));
+}
+```
+
+3.  Async Action Middleware
 
 This helper is the same as thunk middleware. But we decide to put it all together, because we believe this middleware is related to action helpers. If you prefer to use thunk middleware has the same effect.
 
