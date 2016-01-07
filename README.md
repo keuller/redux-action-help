@@ -1,7 +1,7 @@
 Redux Action Helpers
 ======================
 
-1.  Action Creator Helper
+## Action Creator Helper
 
 This helper create Actions based on ```key``` and standardizes Action's structure. For example:
 
@@ -42,7 +42,7 @@ There are two types of actions: ```Default``` and ```Simple``` action. The main 
 
 You can create a simple action using ```createSimpleAction``` instead of ```createAction```.
 
-2.  Async Action Creator Helper
+## Async Action Creator Helper
 
 Similarly to ```createAction``` and ```createSimpleAction``` helpers, there is a helper for asynchronous action. You can use an async action to call a Rest API, for example. So to create an async action, you can do that like:
 
@@ -85,7 +85,7 @@ onSaveClick = (e) => {
 }
 ```
 
-3.  Async Action Middleware
+## Async Action Middleware
 
 This helper is the same as thunk middleware. But we decide to put it all together, because we believe this middleware is related to action helpers. If you prefer to use thunk middleware has the same effect.
 
