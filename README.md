@@ -85,6 +85,42 @@ onSaveClick = (e) => {
 }
 ```
 
+### Dynamic Action Create Helper
+
+This helper must be used when you need to do some processing on action and return the payload to be updated on application state. A dynamic action can be created using ```createDynaAction``` method.
+
+```
+import { createDynaAction } from 'redux-action-helper';
+
+let calculateAge = createDynaAction(CALCULATE_AGE, (birthDate) => {
+  let ageDifMs = Date.now() - birthDate.getTime();
+  let ageDate = new Date(ageDifMs);
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+});
+
+let result = calculateAge(new Date(1981, 03, 09));
+```
+
+Calling this dynamic action, the output will be:
+
+```
+{
+  "type": "CALCULATE_AGE",
+  "payload": 34,
+  "error": null
+}
+```
+
+You can return a promise as result, that will be processed like a async action. Let's checkout other example that uses a promise as a result object.
+
+```
+import { createDynaAction } from 'redux-action-helper';
+
+let fetchTodo = createDynaAction(TodoAction.FETCH_TODOS, () => {
+  return axios.get(`${baseUrl}/api/v1/todos`);
+});
+```
+
 ### Async Action Middleware
 
 This helper is the same as thunk middleware. But we decide to put it all together, because we believe this middleware is related to action helpers. If you prefer to use thunk middleware has the same effect.

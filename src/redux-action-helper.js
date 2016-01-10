@@ -24,19 +24,38 @@
 		};
 	}
 
+	function _createDynamicAction(type, fn) {
+		return function(data) {
+			if (data)
+				return { type, payload: fn(data), error: null };
+			else
+				return { type, payload: fn(), error: null };
+		};
+	}
+
 	function _asyncActionMiddleware(store) {
 		return function (next) {
 			return function(action) {
-			    if (typeof action === 'function')
-			        return action(store.dispatch, store.getState());
-			    else
-			        return next(action);
-			}
-		}
+				if (typeof action === 'function')
+					return action(store.dispatch, store.getState());
+				else {
+					try {
+						action.payload.then(result => {
+							return next({ type: action.type, payload: result, error: null });
+						}).catch(err => {
+							return next({ type: action.type, payload: null, error: err });
+						});
+					}	catch (e) {
+						return next(action);
+					}
+				}
+			};
+		};
 	}
 
 	exports.createAction = _createAction;
 	exports.createSimpleAction = _createSimpleAction;
+	exports.createDynaAction = _createDynamicAction;
 	exports.createAsyncAction = _createAsyncAction;
 	exports.asyncActionMiddleware = _asyncActionMiddleware;
 }(typeof exports === 'undefined' ? (this.ReduxActionHelper = {}) : exports));
