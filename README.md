@@ -85,7 +85,7 @@ onSaveClick = (e) => {
 }
 ```
 
-### Dynamic Action Create Helper
+### Dynamic Action Creator Helper
 
 This helper must be used when you need to do some processing on action and return the payload to be updated on application state. A dynamic action can be created using ```createDynaAction``` method.
 
