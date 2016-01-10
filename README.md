@@ -18,11 +18,11 @@ let myAction = (data) => {
 You just need call ```createSimpleAction``` like this:
 
 ```
-import { createAction } from 'redux-action-helper';
+import { createSimpleAction } from 'redux-action-helper';
 
 const MY_ACTION = 'MY_ACTION';
 
-let myAction = createAction(MY_ACTION);
+let myAction = createSimpleAction(MY_ACTION);
 ```
 
 You must use ```payload``` to get the data passed to action. Inside your reducer function you must access the value like this:
@@ -38,9 +38,9 @@ let myReducer = (state = {}, action) => {
 }
 ```
 
-There are two types of actions: ```Default``` and ```Simple``` action. The main difference between them are the ```error```attribute that there is in ```Default``` action. This attribute can be used to pass some error information about the action, commonly used in async actions.
+There are two types of actions: ```Default``` and ```Simple``` action. The main difference between them are the ```error```attribute that there is in ```Default``` action. This attribute can be used to pass some error information about the action, commonly used in async actions or dynamic actions.
 
-You can create a simple action using ```createSimpleAction``` instead of ```createAction```.
+You can create a **default** action using ```createAction``` instead of ```createSimpleAction```.
 
 ### Async Action Creator Helper
 
@@ -111,13 +111,13 @@ Calling this dynamic action, the output will be:
 }
 ```
 
-You can return a promise as result, that will be processed like a async action. Let's checkout other example that uses a promise as a result object.
+You can return a promise as result, that will be processed like a async action. Let's checkout other example that uses a promise as a result object. Let's rewrite our previous **saveTodo** action using dynamic action helper.
 
 ```
 import { createDynaAction } from 'redux-action-helper';
 
-let fetchTodo = createDynaAction(TodoAction.FETCH_TODOS, () => {
-  return axios.get(`${baseUrl}/api/v1/todos`);
+let fetchTodo = createDynaAction(TodoAction.ADD_TODO, (todo) => {
+  return axios.post(`${baseUrl}/api/v1/todos`, todo);
 });
 ```
 
