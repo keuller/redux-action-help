@@ -111,7 +111,7 @@ Calling this dynamic action, the output will be:
 }
 ```
 
-You can return a promise as result, that will be processed like a async action. Let's checkout other example that uses a promise as a result object. Let's rewrite our previous **saveTodo** action using dynamic action helper.
+You can return a promise as result, that will be processed like an async action. Let's checkout other example that uses a promise as a result object. Let's rewrite our previous **saveTodo** action using dynamic action helper.
 
 ```
 import { createDynaAction } from 'redux-action-helper';
