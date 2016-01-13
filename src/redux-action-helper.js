@@ -24,7 +24,7 @@
 		};
 	}
 
-	function _createDynamicAction(type, fn) {
+	function _createDynamicAction(name, fn) {
 		return function(data) {
 			var _payload = null;
 			if (data) {
@@ -32,7 +32,7 @@
 			} else {
 				_payload = fn();
 			}
-			return { type, payload: _payload };
+			return { type: name, payload: _payload };
 		};
 	}
 
