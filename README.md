@@ -98,7 +98,7 @@ let calculateAge = createDynaAction(CALCULATE_AGE, (birthDate) => {
   return Math.abs(ageDate.getUTCFullYear() - 1970);
 });
 
-let result = calculateAge(new Date(1981, 03, 09));
+let result = calculateAge(new Date(1981, 3, 9));
 ```
 
 Calling this dynamic action, the output will be:
@@ -106,8 +106,7 @@ Calling this dynamic action, the output will be:
 ```
 {
   "type": "CALCULATE_AGE",
-  "payload": 34,
-  "error": null
+  "payload": 34
 }
 ```
 
@@ -116,7 +115,7 @@ You can return a promise as result, that will be processed like an async action.
 ```
 import { createDynaAction } from 'redux-action-helper';
 
-let fetchTodo = createDynaAction(TodoAction.ADD_TODO, (todo) => {
+let saveTodo = createDynaAction(TodoAction.ADD_TODO, (todo) => {
   return axios.post(`${baseUrl}/api/v1/todos`, todo);
 });
 ```

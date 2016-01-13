@@ -26,10 +26,13 @@
 
 	function _createDynamicAction(type, fn) {
 		return function(data) {
-			if (data)
-				return { type, payload: fn(data), error: null };
-			else
-				return { type, payload: fn(), error: null };
+			var _payload = null;
+			if (data) {
+				_payload = fn(data);
+			} else {
+				_payload = fn();
+			}
+			return { type, payload: _payload };
 		};
 	}
 
