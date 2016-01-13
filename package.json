@@ -1,21 +1,23 @@
 {
   "name": "redux-action-helper",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Redux Action Helpers",
   "main": "src/redux-action-helper.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/keuller/redux-action-help.git"
   },
-  "keywords": ["redux", "action", "helper"],
+  "keywords": [
+    "redux",
+    "action",
+    "helper"
+  ],
   "author": "Keuller Magalhaes <keuller.magalhaes at gmail.com>",
   "license": "GNU",
   "bugs": {
     "url": "https://github.com/keuller/redux-action-help/issues"
   },
   "homepage": "https://github.com/keuller/redux-action-help#readme",
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
