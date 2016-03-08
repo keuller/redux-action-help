@@ -43,9 +43,9 @@
 					return action(store.dispatch, store.getState());
 				else {
 					try {
-						action.payload.then(result => {
+						action.payload.then(function(result) {
 							return next({ type: action.type, payload: result, error: null });
-						}).catch(err => {
+						}).catch(function(err) {
 							return next({ type: action.type, payload: null, error: err });
 						});
 					}	catch (e) {
