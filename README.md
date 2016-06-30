@@ -1,9 +1,11 @@
 Redux Action Helpers
 ======================
 
+This lib tries to reduce boilerplate code when you're working with Redux.
+
 ### Create Constants Helper
 
-Using Redux action you must set **type** attribute on action. It is commonly used through string constats like: **SAVE = 'SAVE'**. This is boilerplate code and we must reduce it. The ```createConstants``` function solve that problem. We can use this function to create all constants we need to.
+Using Redux action you must set **type** attribute on action. It is commonly used through string constats like: **SAVE = 'SAVE'**. This is boilerplate code and we must reduce it. The ```createConstants``` function solve this problem. We can use this function to create all constants we need to.
 
 ```
 import { createConstants } from 'redux-action-helper'
@@ -88,9 +90,9 @@ let fetchTodo = createAsyncAction(FETCH_TODO, dispatch => {
 
 In this example above, we're calling an API to load all todo's item. Notice that we're using ```axios``` lib to request the data from the server. In that example, we aren't pass any extra data to ```axios``` because we're just fetching data.
 
-After performing the asynchronous code, a Promise will processed. The result action type will ***type*** with '\_SUCCESS' if promise resolves or '\_FAIL' otherwise.
+After performing the asynchronous code, a Promise will processed. The result action type will ***type*** with '\_SUCCESS' suffix if promise resolves or '\_FAIL' otherwise.
 
-To pass some data to invoke a request call, we just need add a second parameter ```createAsyncAction``` like:
+To pass some data to invoke a request call, we just need add a second parameter ```createAsyncAction``` like this:
 
 ```
 let saveTodo = createAsyncAction(SAVE_TODO, (dispatch, todo) => {
@@ -135,19 +137,9 @@ Calling this dynamic action, the output will be:
 }
 ```
 
-You can return a promise as result, that will be processed like an async action. Let's checkout other example that uses a promise as a result object. Let's rewrite our previous **saveTodo** action using dynamic action helper.
-
-```
-import { createDynaAction } from 'redux-action-helper';
-
-let saveTodo = createDynaAction(TodoAction.ADD_TODO, (todo) => {
-  return axios.post(`${baseUrl}/api/v1/todos`, todo);
-});
-```
-
 ### Async Action Middleware
 
-This helper is the same as thunk middleware. But we decide to put it all together, because we believe this middleware is related to action helpers. If you prefer to use thunk middleware has the same effect.
+This middleware is the same as thunk middleware. But we decide to put it all together, because we believe this middleware is related to action helpers. If you prefer to use thunk middleware has the same effect.
 
 The usage:
 ```
