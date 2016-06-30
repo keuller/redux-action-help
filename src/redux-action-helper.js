@@ -47,10 +47,10 @@
         var customType = type
         var result = (data == null || data == undefined) ? fn(dispatch) : fn(dispatch, data)
         if (result && !!result.then) {
-          return result.then(resp => {
+          return result.then(function(resp) {
             customType = type + '_SUCCESS'
             return dispatch({ type: customType, payload: resp, error: null })
-          }).catch(err => {
+          }).catch(function(err) {
             customType = type + '_FAIL'
             return dispatch({ type: customType, payload: null, error: err })
           })
