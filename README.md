@@ -145,11 +145,49 @@ let saveTodo = createDynaAction(TodoAction.ADD_TODO, (todo) => {
 });
 ```
 
+### Reducers Helpers
+
+From version 1.1, Redux-action-helper introduces some helpers to eliminate boilerplate code to create **Reducer** functions. There are two helper functions: ```createLeaf``` and ```createReducer```.
+
+First all lets talk about **createLeaf** function. As you know, Redux builds a state data tree through **combineReducers** function. An reducer function is nothing more than a function with signture and a switch..case statement inside of it. Instead of code a huge switch case statement inside your reducer function, we decide to split out into small pieces of code and join them in the end. That is exactly what **createLeaf** function does. Small pieces of code is better to maintain and test.
+
+Let's see some examples:
+
+```
+import { createLeaf } from 'redux-action-helper'
+import TodoAction from 'actions/todo'
+
+const getTodos = createLeaf(TodoAction.GET_TODO, (state, action) => {
+  return (action.payload != null ? action.payload : []);
+})
+
+const addTodo = createLeaf(TodoAction.ADD_TODO, (state, action) => {
+  if (!action.payload) return state;
+  return [...state, action.payload];
+})
+
+```
+
+The sencond function is **createReducer** that will create your reducer itself. This function takes two arguments, first is initial value of reducer and the second is a hash of leaves, created by **createLeaf** function. See the code below:
+
+```
+import { createReducer } from 'redux-action-helper'
+
+const todos = createReducer([], { 
+  addTodo, getTodos, toggleTodo, removeTodo 
+})
+```
+
+In the code above we create a reducer function and assign it to **todos** variable. This is a default reducer function and now you can use **combineReducers** to create your application store.
+
+A plus to use **createReducer** function is in the case of your code inside of leaf throws any error, this will be catched and handled by helper, returning your previous state. It is good in production mode which turns your application more reliable.
+
 ### Async Action Middleware
 
 This helper is the same as thunk middleware. But we decide to put it all together, because we believe this middleware is related to action helpers. If you prefer to use thunk middleware has the same effect.
 
 The usage:
+
 ```
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { asyncActionMiddleware } from 'redux-action-helper';
