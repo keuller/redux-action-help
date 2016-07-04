@@ -14,7 +14,7 @@
 #### `createAction(type)`
 This function creates an action creator that yields an action with a specific type, passed by argument. The action produced by this action creator has that struture:
 
-```
+```js
 {
 	"type": type,
 	"payload": (null or argument passed by),
