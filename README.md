@@ -137,16 +137,6 @@ Calling this dynamic action, the output will be:
 }
 ```
 
-You can return a promise as result, that will be processed like an async action. Let's checkout other example that uses a promise as a result object. Let's rewrite our previous **saveTodo** action using dynamic action helper.
-
-```js
-import { createDynaAction } from 'redux-action-helper';
-
-let saveTodo = createDynaAction(TodoAction.ADD_TODO, (todo) => {
-  return axios.post(`${baseUrl}/api/v1/todos`, todo);
-});
-```
-
 ### Reducers Helpers
 
 From version 1.1, Redux-action-helper introduces some helpers to eliminate boilerplate code to create **Reducer** functions. There are two helper functions: ```createLeaf``` and ```createReducer```.
