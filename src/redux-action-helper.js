@@ -45,7 +45,7 @@
 		return function(data) {
 			return function(dispatch, state) {
 				var customType = type
-				var result = (data == null || data == undefined) ? fn(dispatch) : fn(dispatch, data)
+				var result = (data == null || data == undefined) ? fn() : fn(data)
 				if (result && !!result.then) {
 					return result.then(function(resp) {
 						customType = type + '_SUCCESS'

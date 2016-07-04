@@ -83,7 +83,7 @@ import axios from 'axios';
 import { createAsyncAction } from 'redux-action-helper';
 import TodoAction from '../actions/todo';
 
-let fetchTodo = createAsyncAction(FETCH_TODO, dispatch => {
+let fetchTodo = createAsyncAction(FETCH_TODO, () => {
     return axios.get(`${baseUrl}/api/v1/todos`);
 })
 ```
@@ -95,7 +95,7 @@ After performing the asynchronous code, a Promise will processed. The result act
 To pass some data to invoke a request call, we just need add a second parameter ```createAsyncAction``` like this:
 
 ```js
-let saveTodo = createAsyncAction(SAVE_TODO, (dispatch, todo) => {
+let saveTodo = createAsyncAction(SAVE_TODO, (todo) => {
     axios.post(`${baseUrl}/api/v1/todos`, todo)
 })
 ```
