@@ -1,6 +1,6 @@
 {
   "name": "redux-action-helper",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Redux Action Helpers",
   "main": "src/redux-action-helper.js",
   "scripts": {},

@@ -37,25 +37,30 @@
 	}
 
 	function _createAsyncAction(type, fn) {
-		if (typeof type === 'function') {
-			fn = type
-			type = 'ACTION'
-		}
-
 		return function(data) {
 			return function(dispatch, state) {
+				if (typeof type === 'function') {
+					fn = type
+					type = 'ACTION'
+				}
+
+				// backward compatibility
+				if (type == 'ACTION') {
+					if (data == null || data == undefined) return fn(dispatch)
+					return fn(dispatch, data)
+				}
+
 				var customType = type
-				var result = (data == null || data == undefined) ? fn() : fn(data)
+				var result = (data == null || data == undefined) ? fn(dispatch) : fn(dispatch, data)
 				if (result && !!result.then) {
-					return result.then(function(resp) {
+					result.then(function(resp) {
 						customType = type + '_SUCCESS'
-						return dispatch({ type: customType, payload: resp, error: null })
+						dispatch({ type: customType, payload: resp, error: null })
 					}).catch(function(err) {
 						customType = type + '_FAIL'
-						return dispatch({ type: customType, payload: null, error: err })
+						dispatch({ type: customType, payload: null, error: err })
 					})
 				}
-				throw new Error('Async action must return a promise.')
 			};
 		};
 	}
@@ -77,13 +82,13 @@
 			throw new Error('The first argument of \'createReducer\' function is required. It is the reducer initial value.')
 		}
 
-		function Manager() {
+		function Manager(reducerObj) {
 			this.previous = null;
 			this.leaves = [];
-			for(var key in obj) {
-				this.leaves.push(obj[key])
+			for(var key in reducerObj) {
+				this.leaves.push(reducerObj[key])
 			}
-			this.leafCount = Object.keys(obj).length;
+			this.leafCount = Object.keys(reducerObj).length;
 		}
 
 		Manager.prototype = {
@@ -105,7 +110,7 @@
 		}
 
 		return function(state, action) {
-			var manager$ = new Manager();
+			var manager$ = new Manager(obj);
 			var hasState = (state != null && state != undefined)
 			return manager$.execute(action.type, (hasState ? state : init), action)
 		}
