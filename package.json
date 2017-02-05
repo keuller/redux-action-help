@@ -19,5 +19,8 @@
     "url": "https://github.com/keuller/redux-action-help/issues"
   },
   "homepage": "https://github.com/keuller/redux-action-help#readme",
-  "devDependencies": {}
+  "devDependencies": {},
+  "browserify": {
+    "transform": ["babelify"]
+  }
 }
